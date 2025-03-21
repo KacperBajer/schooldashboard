@@ -3,7 +3,7 @@ import { User } from "@/lib/types";
 import React, { useState } from "react";
 import { Table, TableCell, TableHead, TableRow } from "./Table";
 import Toggle from "./Toggle";
-import { capitalizeFirstLetter } from "./utils";
+import { capitalizeFirstLetter } from "../lib/utils";
 import UserPermissionsTableTopBar from "./UserPermissionsTableTopBar";
 
 type Props = {

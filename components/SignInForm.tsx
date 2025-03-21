@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { z } from 'zod';
 import CustomInput from './CustomInput';
-import { redirectPath } from './utils';
+import { redirectPath } from '../lib/utils';
 
 const schema = z.object({
     email: z.string().email({

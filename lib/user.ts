@@ -8,27 +8,6 @@ import { User } from "./types";
 
 type AuthUserResponse = | {status: 'success', user: User} | {status: 'error'; error: string}
 
-
-export const listenToUsersChanges = async (io: any) => {
-    try {
-        const client = await (conn as Pool).connect()
-        
-        await client.query("LISTEN users_changes")
-
-        client.on("notification", async (msg) => {
-            if (msg.channel === "users_changes") {
-                console.log("Zmiana w tabeli users, wysyłanie WS...")
-
-                io.emit("USERS_UPDATED")
-            }
-        })
-
-        console.log("Nasłuchiwanie na zmiany w tabeli users...")
-    } catch (error) {
-        console.error("Błąd podczas nasłuchiwania na zmiany w tabeli users:", error)
-    }
-}
-
 export const getUser = async () => {
     try {
         const session = await getSession()

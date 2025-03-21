@@ -55,3 +55,36 @@ export type OrderItem = {
     cost: number
     order_date?: Date
 }
+
+export type Song = {
+    id: number;
+    title: string;
+    artist: string;
+    src: string;
+    duration: number,
+  }
+  export type CurrentSong = {
+    song: Song
+    ip: string
+    currenttime: number
+    isplaying: boolean
+  }
+  export type Playlist = {
+    id: number
+    description: string
+    name: string
+    isProtected: boolean
+    songs: Song[]
+  }
+  export type QueueSong = {
+    queue_id: number
+    place: number
+  } & Song
+  export type CreateEventData = {
+    name: string
+    function: string
+    recurring: null | boolean
+    date: null | string | Date
+    days: string[]
+    time: string
+  }

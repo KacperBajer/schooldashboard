@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Table, TableCell, TableHead, TableRow } from "./Table";
 import { User } from "@/lib/types";
 import Link from "next/link";
-import { capitalizeFirstLetter, formatDate } from "./utils";
+import { capitalizeFirstLetter, formatDate } from "../lib/utils";
 import Image from "next/image";
 import { FaTrash } from "react-icons/fa";
 import TooltipButton from "./TooltipButton";

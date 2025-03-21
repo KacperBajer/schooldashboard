@@ -3,7 +3,6 @@
 import { Pool } from "pg"
 import conn from "./db"
 import { getUser } from "./user"
-import { Server } from "ws"
 
 
 export const getDoors = async () => {
@@ -16,25 +15,5 @@ export const getDoors = async () => {
     } catch (error) {
         console.log(error)
         return []
-    }
-}
-
-export const listenToDoorsChanges = async (io: any) => {
-    try {
-        const client = await (conn as Pool).connect()
-        
-        await client.query("LISTEN doors_changes")
-
-        client.on("notification", async (msg) => {
-            if (msg.channel === "doors_changes") {
-                console.log("Zmiana w tabeli doors, wysyłanie WS...")
-                
-                io.emit("DOORS_UPDATED")
-            }
-        })
-
-        console.log("Nasłuchiwanie na zmiany w tabeli doors...")
-    } catch (error) {
-        console.error("Błąd podczas nasłuchiwania na zmiany w tabeli doors:", error)
     }
 }

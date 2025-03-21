@@ -1,4 +1,4 @@
-import { redirectPath } from '@/components/utils'
+import { redirectPath } from '@/lib/utils'
 import { getUser } from '@/lib/user'
 import { redirect } from 'next/navigation'
 import React from 'react'

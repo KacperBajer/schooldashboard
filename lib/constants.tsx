@@ -54,3 +54,20 @@ export const SideBarLinks = [
 
 export const showOrderTopBarPermissions = (user: User) => user.permissions.can_add_order || user.permissions.can_see_order_history || user.permissions.can_mark_order_as_ordered || user.permissions.can_delete_order
 export const showMoreBoxOrderPermissions = (user: User) => user.permissions.can_delete_order || user.permissions.can_edit_order || user.permissions.can_mark_order_as_ordered
+
+export const EventActions = [
+    {
+        name: 'Play',
+        function: 'play'
+    },
+    {
+        name: 'Pause',
+        function: 'pause'
+    },
+    {
+        name: 'Play next',
+        function: 'playNext'
+    },
+]
+
+export const days = ['Monday', 'Tuesday', "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]

@@ -4,26 +4,6 @@ import { Pool } from "pg";
 import conn from "./db";
 import { getUser } from "./user"
 
-export const listenToOrdersChanges = async (io: any) => {
-    try {
-        const client = await (conn as Pool).connect()
-        
-        await client.query("LISTEN orders_changes")
-
-        client.on("notification", async (msg) => {
-            if (msg.channel === "orders_changes") {
-                console.log("Zmiana w tabeli orders, wysyłanie WS...")
-
-                io.emit("ORDERS_UPDATED")
-            }
-        })
-
-        console.log("Nasłuchiwanie na zmiany w tabeli orders...")
-    } catch (error) {
-        console.error("Błąd podczas nasłuchiwania na zmiany w tabeli orders:", error)
-    }
-}
-
 export const getOrders = async (status: 'all' | 'ordered' | 'not_ordered' = 'all') => {
     try {
         const user = await getUser()

@@ -1,7 +1,4 @@
-
-import { listenToDoorsChanges } from "@/lib/doors";
-import { listenToOrdersChanges } from "@/lib/orders";
-import { listenToUsersChanges } from "@/lib/user";
+import { listenToDatabaseChanges } from "@/lib/listenTriggers";
 import type { NextApiRequest } from "next"
 import { Server } from "socket.io"
 
@@ -25,9 +22,7 @@ export default function SocketHandler(_req: NextApiRequest, res: any) {
       console.log("Received message From Client:", data);
     });
 
-    listenToDoorsChanges(io)
-    listenToOrdersChanges(io)
-    listenToUsersChanges(io)
+    listenToDatabaseChanges(io)
     // eslint-disable-next-line @typescript-eslint/dot-notation
 
     // Event handler for client disconnections

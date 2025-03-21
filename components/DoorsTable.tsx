@@ -2,7 +2,7 @@
 import React from 'react'
 import { Table, TableCell, TableHead, TableRow } from './Table'
 import { Door } from '@/lib/types'
-import { capitalizeFirstLetter } from './utils'
+import { capitalizeFirstLetter } from '../lib/utils'
 import useWebSocketConnectionHook from '@/hooks/useWebSocketConnectionHook'
 import { reloadPath } from '@/lib/reloadPath'
 

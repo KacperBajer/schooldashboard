@@ -1,4 +1,4 @@
-import { redirectPath } from '@/components/utils';
+import { redirectPath } from '@/lib/utils';
 import { getUser } from '@/lib/user';
 import React, { ReactNode } from 'react'
 
