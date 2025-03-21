@@ -1,11 +1,14 @@
 import DoorsTable from '@/components/DoorsTable'
-import { Table } from '@/components/Table'
+import { getDoors } from '@/lib/doors'
 import React from 'react'
 
-const page = () => {
+const page = async () => {
+
+  const doors = await getDoors()
+
   return (
     <div className='py-4 pr-4'>
-      <DoorsTable />
+      <DoorsTable doors={doors} />
     </div>
   )
 }

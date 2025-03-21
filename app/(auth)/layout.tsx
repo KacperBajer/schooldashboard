@@ -1,6 +1,5 @@
-import SideBar from '@/components/SideBar'
+import { redirectPath } from '@/components/utils';
 import { getUser } from '@/lib/user';
-import { redirect } from 'next/navigation';
 import React, { ReactNode } from 'react'
 
 export const dynamic = "force-dynamic";
@@ -8,14 +7,11 @@ export const dynamic = "force-dynamic";
 const layout = async ({children}: {children: ReactNode}) => {
 
   const user = await getUser()
-  if(!user) redirect('/sign-in')
+  if(user) redirectPath(user.permissions)
 
   return (
-    <div className='flex h-screen'>
-      <SideBar user={user} />
-      <div className='flex-1 h-screen flex flex-col overflow-auto'>
+    <div className='h-screen flex w-full justify-center items-center'>
         {children}
-      </div>
     </div>
   )
 }

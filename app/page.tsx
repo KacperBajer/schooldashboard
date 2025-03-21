@@ -1,10 +1,16 @@
-import SideBar from '@/components/SideBar'
+import { redirectPath } from '@/components/utils'
+import { getUser } from '@/lib/user'
+import { redirect } from 'next/navigation'
 import React from 'react'
 
-const page = () => {
+const page = async () => {
+  const user = await getUser()
+  if(!user) redirect('/sign-in') 
+  redirectPath(user.permissions)
+  
   return (
     <div>
-      <p className=''>D</p>
+      
     </div>
   )
 }
