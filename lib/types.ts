@@ -90,5 +90,19 @@ export type CreateEventData = {
 };
 
 export type KommerUser = {
-  
+  id:  string
+  employeeNumber: string
+  firstName: string
+  lastName: string
+  departmentNumber: string
+  departmentName: string
+  gender: string
+  presenceZone: string
+  fingerprintCount: string
+  cardNumber: string
+  workPhone: string
+  additionalId: string;
+  photo: string
+  validityDate: string
+  description: string
 };

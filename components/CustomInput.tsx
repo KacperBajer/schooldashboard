@@ -9,7 +9,7 @@ type Props = {
 
 const CustomInput = ({name, error, register, customClass, ...props}: Props) => {
   return (
-    <div>
+    <div className='w-full'>
         <input 
             id={name}
             name={name}
