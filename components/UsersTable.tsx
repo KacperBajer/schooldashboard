@@ -38,7 +38,7 @@ const UsersTable = ({ users, user }: Props) => {
   return (
     <>
     {showConfirmPopup && <ConfirmActionPopup handleClose={() => setShowConfirmPopup(false)} name="delete user" action={() => handleDelete(showConfirmPopup as number)} />}
-    <div className="p-2 bg-surface rounded-lg border border-border">
+    <div className="p-2 overflow-x-auto bg-surface rounded-lg border border-border">
       <Table>
         <TableHead>
           <TableCell className="flex-1 min-w-[200px]">Name</TableCell>

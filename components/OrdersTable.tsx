@@ -67,7 +67,7 @@ const OrdersTable = ({ orders, user }: Props) => {
             {showConfirmPopup && <ConfirmActionPopup handleClose={() => setShowConfirmPopup(false)} action={() => handleMarkAsOrdered(showConfirmPopup as number[])} name='mark as ordered' />}
             {showMoreBox && <MoreBoxOrder user={user} handleEdit={setShowEditOrderPopup} handleMarkAsOrdered={setShowConfirmPopup} item={showMoreBox} handleClose={() => setShowMoreBox(null)} selected={selected} setSelected={setSelected} position={moreBoxPosition as { top: number; left: number }} />}
             {!isHistory && showOrderTopBarPermissions(user) && <OrdersTableTopBar user={user} handleMarkAsOrdered={setShowConfirmPopup} setSelected={setSelected} selected={selected} />}
-            <div className='p-2 bg-surface rounded-lg border border-border'>
+            <div className='p-2 bg-surface rounded-lg border border-border overflow-x-auto'>
                 <Table>
                     <TableHead>
                         {!isHistory && showMoreBoxOrderPermissions(user) && <TableCell className='min-w-[30px]'>

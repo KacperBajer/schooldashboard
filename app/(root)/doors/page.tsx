@@ -7,7 +7,7 @@ const page = async () => {
   const doors = await getDoors()
 
   return (
-    <div className='py-4 pr-4'>
+    <div className='p-4 md:pl-0'>
       <DoorsTable doors={doors} />
     </div>
   )

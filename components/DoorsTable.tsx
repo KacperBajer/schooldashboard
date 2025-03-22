@@ -17,7 +17,7 @@ const DoorsTable = ({ doors }: Props) => {
   }, "DOORS_UPDATED");
 
   return (
-    <div className='p-2 bg-surface rounded-lg border border-border'>
+    <div className='p-2 overflow-x-auto bg-surface rounded-lg border border-border'>
       <Table>
 
         <TableHead>

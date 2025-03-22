@@ -11,8 +11,8 @@ const page = async () => {
     if(!user) return
 
   return (
-    <div className='py-4 pr-4'>
-        <OrdersTable user={user} orders={orders} />
+    <div className='p-4 md:pl-0'>
+      <OrdersTable user={user} orders={orders} />
     </div>
   )
 }

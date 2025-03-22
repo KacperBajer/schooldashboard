@@ -9,7 +9,7 @@ const page = async () => {
   if (!user) return;
 
   return (
-    <div className="pr-4 py-4">
+    <div className="p-4 md:pl-0">
       {user.permissions.can_manage_users && <UserTableTopBar />}
       <UsersTable user={user} users={users} />
     </div>

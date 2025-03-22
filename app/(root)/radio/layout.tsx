@@ -2,7 +2,7 @@ import RadioMusicPlayer from "@/components/RadioMusicPlayer";
 import RadioQueueBar from "@/components/RadioQueueBar";
 import RadioSideBar from "@/components/RadioSideBar";
 import { PlayerProvider } from "@/context/PlayerContext";
-import { getAllPlaylists, getIPAddress, getSong } from "@/lib/radio";
+import { getAllPlaylists } from "@/lib/radio";
 import { startScheduler } from "@/lib/radioScheduler";
 import React, { ReactNode } from "react";
 

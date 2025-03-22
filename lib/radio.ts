@@ -23,6 +23,10 @@ export async function getIPAddress() {
 
 export const getSong = async (player: number) => {
     try {
+
+        const user = await getUser()
+        if(!user || !user.permissions.can_see_radio_section) return 'err'
+
         const query = `
             SELECT s.id, s.title, s.artist, s.src, s.duration, ps.is_playing, ps.currenttime, ps.playing_device
             FROM radio_playback ps
@@ -58,6 +62,10 @@ export const getSong = async (player: number) => {
 
 export const setOnlineDevice = async (ip: string) => {
     try {
+
+        const user = await getUser()
+        if(!user || !user.permissions.can_see_radio_section) return 'err'
+
         const query = `
             INSERT INTO radio_onlinedevices (ip, last_online)
             VALUES ($1, NOW())
@@ -76,6 +84,10 @@ export const setOnlineDevice = async (ip: string) => {
 
 export const getOnlineDevices = async () => {
     try {
+
+        const user = await getUser()
+        if(!user || !user.permissions.can_see_radio_section) return []
+
         const query = `
             SELECT ip, last_online
             FROM radio_onlinedevices
@@ -115,6 +127,10 @@ export const getOnlineDevices = async () => {
 
 export const changePlayingDevice = async (ip: string, player: number) => {
     try {
+
+        const user = await getUser()
+        if(!user || !user.permissions.can_see_radio_section) return 'err'
+
         const query = `
             UPDATE radio_playback
             SET playing_device = $1
@@ -131,6 +147,10 @@ export const changePlayingDevice = async (ip: string, player: number) => {
 }
 export const changePlayingStatus = async (isPlaying: boolean, player: number) => {
     try {
+
+                const user = await getUser()
+        if(!user || !user.permissions.can_see_radio_section) return 'err'
+
         const query = `
             UPDATE radio_playback
             SET is_playing = $1
@@ -191,6 +211,9 @@ export const getQueue = async (player: number) => {
 
 export const skipSong = async (player: number) => {
     try {
+
+                const user = await getUser()
+        if(!user || !user.permissions.can_see_radio_section) return 'err'
 
         const checkIsNextSongAvailableQuery = `SELECT * FROM radio_queue WHERE player_id = $1`
         const resultChecking = await (conn as Pool).query(
@@ -261,6 +284,10 @@ export const skipSong = async (player: number) => {
 
 export const addToQueue = async (songIds: number | number[], player: number) => {
     try {
+        
+                const user = await getUser()
+        if(!user || !user.permissions.can_see_radio_section) return 'err'
+
         const songs = Array.isArray(songIds) ? songIds : [songIds];
 
         const maxPlaceQuery = `
@@ -288,6 +315,10 @@ export const addToQueue = async (songIds: number | number[], player: number) => 
 };
 export const addToQueueFirst = async (songIds: number | number[], player: number) => {
     try {
+
+                const user = await getUser()
+        if(!user || !user.permissions.can_see_radio_section) return 'err'
+
         const songs = Array.isArray(songIds) ? songIds : [songIds];
 
         const shiftQuery = `
@@ -317,6 +348,10 @@ export const addToQueueFirst = async (songIds: number | number[], player: number
 };
 export const getPlaylist = async (playlist: string) => {
     try {
+
+        const user = await getUser()
+        if(!user || !user.permissions.can_see_radio_section) return null
+
         const playlistQuery = `
             SELECT 
                 id,
@@ -371,6 +406,10 @@ export const getPlaylist = async (playlist: string) => {
 
 export const getAllPlaylists = async () => {
     try {
+
+        const user = await getUser()
+        if(!user || !user.permissions.can_see_radio_section) return null
+
         const query = `
             SELECT * FROM radio_playlists ORDER BY place ASC;
         `;
@@ -402,6 +441,7 @@ export const addToAnotherPlaylists = async (
     songs: number[]
 ) => {
     try {
+
         for (const playlistId of playlists) {
             for (const songId of songs) {
                 const checkQuery = `
@@ -430,6 +470,10 @@ export const addToAnotherPlaylists = async (
 
 export const deleteFromPlaylist = async (playlistId: string | number, songIds: number[]) => {
     try {
+
+        const user = await getUser()
+        if(!user || !user.permissions.can_see_radio_section) return 'err'
+
         const deleteQuery = `
             DELETE FROM radio_playlistssong
             WHERE playlist_id = $1 AND song_id = ANY($2);
@@ -511,6 +555,10 @@ export const updatePlaybackState = async (songId: number | null, currentTime: nu
 
 export const changeSongProgress = async (player: number, progress: number) => {
     try {
+
+        const user = await getUser()
+        if(!user || !user.permissions.can_see_radio_section) return 'err'
+
         const query = `
             UPDATE radio_playback
             SET currenttime = $1
@@ -557,6 +605,10 @@ export const addPlaylist = async (name: string, description: string) => {
 };
 export const editPlaylist = async (name: string, description: string, id: number) => {
     try {
+
+        const user = await getUser()
+        if(!user || !user.permissions.can_see_radio_section) return 'err'
+
         const query = `
             UPDATE radio_playlists
             SET name = $1, description = $2
@@ -572,6 +624,9 @@ export const editPlaylist = async (name: string, description: string, id: number
 };
 export const copyPlaylist = async (id: number) => {
     try {
+
+        const user = await getUser()
+        if(!user || !user.permissions.can_see_radio_section) return 'err'
 
         const getQuery = `
             SELECT name, description
@@ -613,6 +668,9 @@ export const copyPlaylist = async (id: number) => {
 export const deletePlaylist = async (id: number) => {
     try {
 
+        const user = await getUser()
+        if(!user || !user.permissions.can_see_radio_section) return 'err'
+
         const checkQuery = `
         SELECT is_protected FROM radio_playlists WHERE id = $1
         `;
@@ -641,6 +699,10 @@ export const deletePlaylist = async (id: number) => {
 };
 export const changePlaylistOrder = async (playlists: Playlist[]) => {
     try {
+
+        const user = await getUser()
+        if(!user || !user.permissions.can_see_radio_section) return 'err'
+
         const query = `
             UPDATE radio_playlists
             SET place = $1
@@ -675,6 +737,9 @@ export const changeQueueOrder = async (songs: QueueSong[]) => {
 
 export const deleteFromQueue = async (id: number | string) => {
     try {
+
+        const user = await getUser()
+        if(!user || !user.permissions.can_see_radio_section) return 'err'
 
         const query = `DELETE FROM radio_queue WHERE id = $1`
 
@@ -726,6 +791,7 @@ export const playPrevSong = async (player: number) => {
 
 import { spawn } from 'child_process';
 import path from 'path';
+import { getUser } from './user';
 
 interface SongData {
     title: string;

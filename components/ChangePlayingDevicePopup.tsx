@@ -26,10 +26,18 @@ const ChangePlayingDevicePopup = ({handleClose}: Props) => {
                     toast.error('Something went wrong with fetching online devices')
                     return
                 }
-                console.log(res)
-                setData(res.devices)
-                const selectedDevice = res.playingDevices.find(device => device.id == player);
-                setSelected(selectedDevice?.playingdevice)
+                if (res && typeof res === 'object' && 'devices' in res) {
+                    setData(res.devices)
+                } else {
+                    setData([])
+                }
+    
+                if (res && typeof res === 'object' && 'playingDevices' in res) {
+                    const selectedDevice = res.playingDevices.find(device => device.id == player);
+                    setSelected(selectedDevice?.playingdevice || null);
+                } else {
+                    setSelected(null)
+                }
             } catch (error) {
                 console.log(error)
                 toast.error('Something went wrong with fetching online devices')
@@ -76,7 +84,7 @@ const ChangePlayingDevicePopup = ({handleClose}: Props) => {
                         </button>
                     ))}
                 </div>
-                <button onClick={handleSubmit} disabled={isLoading} className={`w-full mt-4 rounded-md bg-blue-600 ${!isLoading && "hover:bg-blue-700"} duration-300 transition-all font-bold py-1.5 px-4`}>Change</button>
+                <button onClick={handleSubmit} disabled={isLoading} className={`w-full mt-4 rounded-md bg-blue-600 ${!isLoading && "hover:bg-blue-700"} duration-300 transition-all font-bold py-1.5 px-4 hover:cursor-pointer`}>Change</button>
             </div>
         </div>
     )

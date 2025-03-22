@@ -186,7 +186,7 @@ const RadioMusicPlayer = () => {
     useEffect(() => {
         const handleOnline = async () => {
             const ip = await getIPAddress()
-            const res = await setOnlineDevice(ip as string)
+            await setOnlineDevice(ip as string)
         }
         const interval = setInterval(handleOnline, 10000);
 

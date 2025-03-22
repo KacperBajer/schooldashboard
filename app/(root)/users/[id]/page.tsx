@@ -10,7 +10,7 @@ const page = async ({ params }: { params?: Promise<any> }) => {
   if (!user || !managedUser || !user.permissions.can_manage_users) redirect("/users");
 
   return (
-    <div className="py-4 pr-4">
+    <div className="p-4 md:pl-0">
       <UserPermissionsTable user={user} managedUser={managedUser} />
     </div>
   );
