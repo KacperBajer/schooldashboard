@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import { boolean } from "zod";
 
 export type Session = {
   session_id: string;
@@ -36,6 +37,8 @@ export type UserPermissions = {
   can_edit_order: boolean;
   can_see_users_section: boolean;
   can_manage_users: boolean;
+  can_see_cards_section: boolean
+  'can_see_school-id_section': boolean
 };
 
 export type Door = {
@@ -106,3 +109,13 @@ export type KommerUser = {
   validityDate: string
   description: string
 };
+
+export type Card = {
+  id: number
+  first_name: string
+  last_name: string
+  card_number: number
+  group_name: 'UHF' | 'pracownicy' | "nauczyciele" | 'uczniowie'
+  group_id: number
+  class?: string
+}

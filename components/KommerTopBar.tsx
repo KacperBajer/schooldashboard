@@ -66,7 +66,7 @@ const KommerTopBar = ({ page, pageCount }: Props) => {
 
   return (
     <div className="flex gap-1 mb-2 items-center">
-      <TooltipButton disabled={page === '1'} text="Prev page">
+      <TooltipButton onClick={prevPage} disabled={page === '1'} text="Prev page">
         <IoCaretBack />
       </TooltipButton>
       <form onSubmit={handleSubmit(onSubmit)}>

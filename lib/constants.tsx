@@ -6,6 +6,7 @@ import { BiSolidTrafficBarrier } from "react-icons/bi";
 import { GoPackage } from "react-icons/go";
 import { FaUsers } from "react-icons/fa6";
 import { User } from "./types";
+import { FaAddressCard } from "react-icons/fa";
 
 export const SideBarLinks = [
     {
@@ -49,6 +50,12 @@ export const SideBarLinks = [
         name: 'users',
         icon: <FaUsers className="text-xl" />,
         href: '/users'
+    },
+    {
+        title: 'Cards',
+        name: 'cards',
+        icon: <FaAddressCard className="text-xl" />,
+        href: '/cards'
     },
 ]
 

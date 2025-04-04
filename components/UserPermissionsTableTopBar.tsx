@@ -1,12 +1,19 @@
-import { User } from "@/lib/types";
+import { User, UserPermissions } from "@/lib/types";
+import { savePermissions } from "@/lib/user";
 import Image from "next/image";
 import React from "react";
 
 type Props = {
   user: User;
+  permissions: UserPermissions
 };
 
-const UserPermissionsTableTopBar = ({ user }: Props) => {
+const UserPermissionsTableTopBar = ({ user, permissions }: Props) => {
+
+  const handleSave = async () => {
+    const res = await savePermissions(permissions, user)
+  }
+
   return (
     <section className="flex items-center justify-between mb-2">
       <div className="p-2 bg-surface rounded-lg border border-border flex w-fit">
@@ -25,6 +32,7 @@ const UserPermissionsTableTopBar = ({ user }: Props) => {
         </p>
       </div>
       {!user.su && <button
+        onClick={handleSave}
         className={`py-2 px-5 bg-blue-700 rounded-lg border border-border flex w-fit hover:cursor-pointer`}
       >
         Save

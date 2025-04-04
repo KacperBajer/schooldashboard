@@ -1,3 +1,4 @@
+'use client'
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { FaPlus } from "react-icons/fa";

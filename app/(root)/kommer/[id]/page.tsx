@@ -13,7 +13,7 @@ const page = async ({ params, searchParams }: any) => {
 
   return (
     <div className="p-4 md:pl-0 min-h-screen">
-      <div className="rounded-md bg-surface border border-border p-4 grid grid-cols-1 lg:grid-cols-2 gap-2 h-full">
+      <div className="rounded-md bg-surface border border-border p-4 grid grid-cols-1 lg:grid-cols-2 gap-2">
         <section className="flex flex-col gap-2">
           <KommerInfoInput name="Employer number" value={kommerUser.PIN || '-'} />
           <KommerInfoInput name="First name" value={kommerUser.EName || '-'} />

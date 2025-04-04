@@ -17,12 +17,35 @@ const UserPermissionsTable = ({ user, managedUser }: Props) => {
     const [permissions, setPermissions] = useState(initialPermissions);
 
     const togglePermission = (permissionKey: keyof typeof permissions) => {
-      setPermissions(prev => ({...prev, [permissionKey]: !prev[permissionKey]}))
-    }
+      setPermissions((prev) => {
+        const newPermissions = { ...prev, [permissionKey]: !prev[permissionKey] };
+        
+        //orders
+        if (permissionKey === "can_add_order" && !prev["can_add_order"]) newPermissions["can_see_orders_section"] = true;
+        if (permissionKey === "can_delete_order" && !prev["can_delete_order"]) newPermissions["can_see_orders_section"] = true;
+        if (permissionKey === "can_edit_order" && !prev["can_edit_order"]) newPermissions["can_see_orders_section"] = true;
+        if (permissionKey === "can_mark_order_as_ordered" && !prev["can_mark_order_as_ordered"]) newPermissions["can_see_orders_section"] = true;
+        if (permissionKey === "can_see_order_history" && !prev["can_see_order_history"]) newPermissions["can_see_orders_section"] = true;
+        if (permissionKey === "can_see_orders_section" && prev["can_see_orders_section"]) {
+          newPermissions["can_add_order"] = false;
+          newPermissions["can_delete_order"] = false
+          newPermissions["can_see_order_history"] = false
+          newPermissions["can_edit_order"] = false
+          newPermissions["can_mark_order_as_ordered"] = false
+        }
+
+        // users
+        if (permissionKey === "can_manage_users" && !prev["can_manage_users"]) newPermissions["can_see_users_section"] = true;
+        if (permissionKey === "can_see_users_section" && prev["can_see_users_section"]) newPermissions["can_manage_users"] = false
+
+        
+        return newPermissions;
+      });
+    };
 
   return (
     <>
-    <UserPermissionsTableTopBar user={managedUser} />
+    <UserPermissionsTableTopBar user={managedUser} permissions={permissions} />
     <div className="p-2 bg-surface rounded-lg border border-border">
       <Table>
         <TableHead>

@@ -4,7 +4,7 @@ import { Pool } from "pg";
 import conn from "./db";
 import bcrypt from "bcryptjs";
 import { createSession, getSession } from "./sessions";
-import { User } from "./types";
+import { User, UserPermissions } from "./types";
 
 type AuthUserResponse = | {status: 'success', user: User} | {status: 'error'; error: string}
 
@@ -184,5 +184,23 @@ export const deleteUser = async (id: number) => {
     } catch (error) {
         console.log(error)    
         return {status: 'error', error: 'Something went wrong'}    
+    }
+}
+export const savePermissions = async (permissions: UserPermissions, managedUser: User) => {
+    try {
+        const user = await getUser()
+        if(!user) return {status: 'error', error: 'You have to be logged in'}
+        if(!user.permissions.can_manage_users) return {status: 'error', error: 'You do not have permissions for that'}
+        if(!user.su && (permissions.can_manage_users !== managedUser.permissions.can_manage_users)) return {status: 'error', error: 'Something went wrong'}
+        if(managedUser.su) return {status: 'error', error: 'Something went wrong'}
+        if(!permissions.can_see_orders_section && (permissions.can_add_order || permissions.can_delete_order || permissions.can_edit_order || permissions.can_mark_order_as_ordered || permissions.can_see_order_history)) return {status: 'error', error: 'Something went wrong'}
+        if(!permissions.can_see_users_section && permissions.can_manage_users) return {status: 'error', error: 'Something went wrong'}
+
+        const query = `UPDATE user_dashboard_permissions SET can_see_doors_section = $2 WHERE user_id = $1`
+        const result = await (conn as Pool).query(query, [managedUser.id, permissions.can_see_doors_section])
+
+    } catch (error) {
+        console.log(error)
+        return {status: 'error', error: 'Something went wrong'}  
     }
 }

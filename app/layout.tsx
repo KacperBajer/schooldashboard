@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
+import "react-datepicker/dist/react-datepicker.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
