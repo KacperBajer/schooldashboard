@@ -196,8 +196,45 @@ export const savePermissions = async (permissions: UserPermissions, managedUser:
         if(!permissions.can_see_orders_section && (permissions.can_add_order || permissions.can_delete_order || permissions.can_edit_order || permissions.can_mark_order_as_ordered || permissions.can_see_order_history)) return {status: 'error', error: 'Something went wrong'}
         if(!permissions.can_see_users_section && permissions.can_manage_users) return {status: 'error', error: 'Something went wrong'}
 
-        const query = `UPDATE user_dashboard_permissions SET can_see_doors_section = $2 WHERE user_id = $1`
-        const result = await (conn as Pool).query(query, [managedUser.id, permissions.can_see_doors_section])
+        const query = `
+        UPDATE user_dashboard_permissions SET
+          can_see_doors_section = $2,
+          can_see_lights_section = $3,
+          can_see_network_section = $4,
+          can_see_kommer_section = $5,
+          can_see_radio_section = $6,
+          can_see_orders_section = $7,
+          can_see_order_history = $8,
+          can_add_order = $9,
+          can_delete_order = $10,
+          can_mark_order_as_ordered = $11,
+          can_edit_order = $12,
+          can_see_users_section = $13,
+          can_manage_users = $14,
+          can_see_cards_section = $15,
+          "can_see_school-id_section" = $16
+        WHERE user_id = $1
+      `;
+      
+      const result = await (conn as Pool).query(query, [
+        managedUser.id,
+        permissions.can_see_doors_section,
+        permissions.can_see_lights_section,
+        permissions.can_see_network_section,
+        permissions.can_see_kommer_section,
+        permissions.can_see_radio_section,
+        permissions.can_see_orders_section,
+        permissions.can_see_order_history,
+        permissions.can_add_order,
+        permissions.can_delete_order,
+        permissions.can_mark_order_as_ordered,
+        permissions.can_edit_order,
+        permissions.can_see_users_section,
+        permissions.can_manage_users,
+        permissions.can_see_cards_section,
+        permissions['can_see_school-id_section']
+      ]);
+      
 
     } catch (error) {
         console.log(error)

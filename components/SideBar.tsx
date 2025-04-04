@@ -9,19 +9,23 @@ import { CiLogout } from "react-icons/ci";
 import { BsPersonVcard } from "react-icons/bs";
 import AddSchoolIDCardPopup from "./AddSchoolIDCardPopup";
 
-type Props = {
+type PropsContent = {
   user: User;
   mode?: "header" | "sidebar";
   handleClose?: () => void;
   showAddCardPopup: () => void;
 };
 
+type Props = {
+  user: User;
+}
+
 export const SideBarContent = ({
   user,
   mode = "sidebar",
   handleClose,
   showAddCardPopup,
-}: Props) => {
+}: PropsContent) => {
   const path = usePathname();
   const router = useRouter();
 

@@ -25,7 +25,7 @@ export type Sections = {
 };
 export type UserPermissions = {
   can_see_doors_section: boolean;
-  can_see_light_section: boolean;
+  can_see_lights_section: boolean;
   can_see_network_section: boolean;
   can_see_kommer_section: boolean;
   can_see_radio_section: boolean;
