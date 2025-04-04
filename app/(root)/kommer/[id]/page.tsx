@@ -9,7 +9,7 @@ const page = async ({ params, searchParams }: any) => {
 
   const kommerUser = await getKommerUser(id);
   const permisions = await getPermissions(kommerUser.PIN as string)
-  const group = await getKommerUsers(1, kommerUser.PIN as string)
+  const group = await getKommerUsers(1, kommerUser.PIN as string, '', '', '', '')
 
   return (
     <div className="p-4 md:pl-0 min-h-screen">
