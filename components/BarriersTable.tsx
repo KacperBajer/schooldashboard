@@ -29,14 +29,12 @@ const BarriersTable = ({barriers}: Props) => {
     }
 
     const handleCopy = async (id: number) => {
-        console.log('ff')
         const res = await getOpenLinkWithToken(id)
         if(res.status === 'error') {
           toast.error(res.error)
           return
         }
-        const text = res.url
-        navigator.clipboard.writeText(text)
+        navigator.clipboard.writeText(res.url as string)
         toast.success('Copied')
     }
 
