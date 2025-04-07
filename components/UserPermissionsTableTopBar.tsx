@@ -2,6 +2,7 @@ import { User, UserPermissions } from "@/lib/types";
 import { savePermissions } from "@/lib/user";
 import Image from "next/image";
 import React from "react";
+import { toast } from "react-toastify";
 
 type Props = {
   user: User;
@@ -12,6 +13,11 @@ const UserPermissionsTableTopBar = ({ user, permissions }: Props) => {
 
   const handleSave = async () => {
     const res = await savePermissions(permissions, user)
+    if(res.status === 'error') {
+      toast.error(res.error)
+      return
+    }
+    toast.success('Saved')
   }
 
   return (

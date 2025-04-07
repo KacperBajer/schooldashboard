@@ -39,13 +39,14 @@ export type UserPermissions = {
   can_manage_users: boolean;
   can_see_cards_section: boolean
   'can_see_school-id_section': boolean
+  can_see_barriers_section: boolean
 };
 
 export type Door = {
   id: number;
   name: string;
   status: "open" | "closed";
-  connection_status: "connected" | "disconnected";
+  connection: boolean;
   mode: "auto-close" | "toggle";
   ip_addr: string;
 };
@@ -118,4 +119,13 @@ export type Card = {
   group_name: 'UHF' | 'pracownicy' | "nauczyciele" | 'uczniowie'
   group_id: number
   class?: string
+}
+
+export type Barrier = {
+  id: number
+  ip: string
+  name: string
+  connection: boolean
+  order: number
+  openlink: string
 }

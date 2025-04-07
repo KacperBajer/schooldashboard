@@ -7,6 +7,7 @@ import { GoPackage } from "react-icons/go";
 import { FaUsers } from "react-icons/fa6";
 import { User } from "./types";
 import { FaAddressCard } from "react-icons/fa";
+import { FaRoadBarrier } from "react-icons/fa6";
 
 export const SideBarLinks = [
     {
@@ -14,6 +15,12 @@ export const SideBarLinks = [
         name: 'doors',
         icon: <MdOutlineSensorDoor className="text-xl" />,
         href: '/doors'
+    },
+    {
+        title: 'Barriers',
+        name: 'barriers',
+        icon: <FaRoadBarrier className="text-xl" />,
+        href: '/barriers'
     },
     {
         title: 'Lights',

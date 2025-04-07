@@ -36,7 +36,7 @@ const Tooltip = ({ text }: Props) => {
   return (
     <div
       ref={tooltipRef}
-      className={`absolute whitespace-nowrap left-1/2 -translate-x-1/2 z-[200] px-2 py-1 rounded-md border border-border text-gray-200 bg-surface text-[10px] ${
+      className={`absolute whitespace-nowrap left-1/2 -translate-x-1/2 z-[400] px-2 py-1 rounded-md border border-border text-gray-200 bg-surface text-[10px] ${
         position === 'top' ? 'top-0 -translate-y-[120%]' : 'bottom-0 translate-y-[120%]'
       }`}
     >

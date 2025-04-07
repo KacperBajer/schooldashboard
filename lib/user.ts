@@ -212,7 +212,8 @@ export const savePermissions = async (permissions: UserPermissions, managedUser:
           can_see_users_section = $13,
           can_manage_users = $14,
           can_see_cards_section = $15,
-          "can_see_school-id_section" = $16
+          "can_see_school-id_section" = $16,
+          can_see_barriers_section = $17
         WHERE user_id = $1
       `;
       
@@ -232,9 +233,11 @@ export const savePermissions = async (permissions: UserPermissions, managedUser:
         permissions.can_see_users_section,
         permissions.can_manage_users,
         permissions.can_see_cards_section,
-        permissions['can_see_school-id_section']
+        permissions['can_see_school-id_section'],
+        permissions.can_see_barriers_section,
       ]);
       
+      return {status: 'success'}
 
     } catch (error) {
         console.log(error)

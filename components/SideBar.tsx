@@ -102,7 +102,7 @@ const SideBar = ({ user }: Props) => {
     <>
       {showAddCardPopup && <AddSchoolIDCardPopup handleClose={() => setShowAddCardPopup(false)} />}
       <div className="p-4 sticky h-screen hidden md:block">
-        <div className="bg-surface w-[250px] h-full rounded-lg border border-border p-4 flex flex-col">
+        <div className="bg-surface min-w-[250px] h-full rounded-lg border border-border p-4 flex flex-col">
           <SideBarContent
             user={user}
             showAddCardPopup={() => setShowAddCardPopup(true)}

@@ -1,7 +1,12 @@
-import { redirect } from "next/navigation";
+'use client'
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const page = () => {
-  redirect("/radio/1");
+  const router = useRouter()
+  useEffect(() => {
+    router.push('/radio/1')
+  })
 
   return (
     <div className="flex-1 flex flex-col p-4">

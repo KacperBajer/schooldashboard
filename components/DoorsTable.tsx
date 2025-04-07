@@ -56,7 +56,7 @@ const DoorsTable = ({ doors }: Props) => {
               <div className={`${item.status === 'open' ? 'bg-green-700' : 'bg-red-800'} rounded-lg px-2 py-0.5 w-full text-center`}>{capitalizeFirstLetter(item.status)}</div>
             </TableCell>
             <TableCell className='min-w-[120px]'>
-              <div className={` ${item.connection_status === 'connected' ? 'bg-green-700' : 'bg-red-800'} rounded-lg px-2 py-0.5 w-full text-center`}>{capitalizeFirstLetter(item.connection_status)}</div>
+              <div className={` ${item.connection ? 'bg-green-700' : 'bg-red-800'} rounded-lg px-2 py-0.5 w-full text-center`}>{item.connection ? 'Connected' : 'Disconnected'}</div>
             </TableCell>
             <TableCell className='min-w-[120px]'>
               <div className='w-full bg-blue-800 hover:cursor-pointer select-none rounded-lg px-2 py-0.5 text-center'>Lock</div>

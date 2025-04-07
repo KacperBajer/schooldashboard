@@ -12,7 +12,8 @@ export const listenToDatabaseChanges = async (io: any) => {
             { name: "users_changes", event: "USERS_UPDATED" },
             { name: "doors_changes", event: "DOORS_UPDATED" },
             { name: "orders_changes", event: "ORDERS_UPDATED" },
-            { name: "radio_queue_changes", event: "RADIO_QUEUE_UPDATED" }
+            { name: "radio_queue_changes", event: "RADIO_QUEUE_UPDATED" },
+            { name: "barriers_changes", event: "BARRIERS_UPDATED" },
         ];
 
         for (const channel of channels) {

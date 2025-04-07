@@ -9,14 +9,7 @@ type CreateKommerSessionResponse =
 const url = process.env.KOMMER_URL;
 
 export const createKommerSession = async () => {
-  try {
-
-    const user = await getUser()
-    if(!user || !user.permissions.can_see_kommer_section) return {
-      status: "error",
-      error: "You do not have permissions for it",
-    } as CreateKommerSessionResponse
-    
+  try {  
     const username = process.env.KOMMER_LOGIN;
     const password = process.env.KOMMER_PASS;
 
@@ -76,6 +69,14 @@ export const createKommerSession = async () => {
 
 export const getKommerUsers = async (page: number, PIN?: string, fname?: string, lname?: string, cardid?: string, group?: string) => {
   try {
+
+    const user = await getUser()
+    if(!user || !user.permissions.can_see_users_section) return {
+      users: [],
+      pageCount: 0,
+      currentPage: 0,
+    };
+
     const sessionId = await createKommerSession();
 
     if (sessionId.status === "error") return {
