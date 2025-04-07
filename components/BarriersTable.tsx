@@ -29,7 +29,9 @@ const BarriersTable = ({barriers}: Props) => {
     }
 
     const handleCopy = async (id: number) => {
+        console.log('ff')
         const res = await getOpenLinkWithToken(id)
+        console.log(res)
         if(res.status === 'error') {
             toast.error(res.error)
             return

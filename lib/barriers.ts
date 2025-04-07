@@ -99,6 +99,7 @@ export const getOpenLinkWithToken = async (id: number) => {
             url: `${process.env.API_URL}/api/barriers?token=${result.rows[0].openapitoken}`
         }
     } catch (error) {
+        console.log(error)
         return {
             status: 'error',
             error: 'Something went wrong'
