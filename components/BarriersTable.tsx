@@ -35,8 +35,8 @@ const BarriersTable = ({barriers}: Props) => {
           toast.error(res.error)
           return
         }
-        console.log(res.url)
-        navigator.clipboard.writeText(res.url as string)
+        const text = res.url
+        navigator.clipboard.writeText(text)
         toast.success('Copied')
     }
 
