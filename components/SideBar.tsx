@@ -40,7 +40,7 @@ export const SideBarContent = ({
       <p className="text-center font-bold text-gray-500 md:mb-20 mb-10 select-none">
         By Kacper Bajer
       </p>
-      <section className="flex flex-col gap-2 mb-4">
+      <section className="flex flex-col gap-2 mb-4 overflow-x-auto hideScrollbar">
         {SideBarLinks.map((item, index) =>
           user.permissions[
             `can_see_${item.name}_section` as keyof UserPermissions
