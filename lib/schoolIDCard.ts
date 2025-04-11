@@ -157,7 +157,9 @@ export const schoolIDStudentCard = async (firstName: string, lastName: string, b
     const user = await getUser()
     if(!user || !user.permissions["can_see_school-id_section"] ) return 'err'
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    })
     const page = await browser.newPage();
 
     await page.setContent(contentStudent(firstName, lastName, birthday, PESEL, schoolType, releaseDate, ID, image), { waitUntil: "domcontentloaded" });
@@ -188,7 +190,9 @@ export const schoolIDTeacherCard = async (firstName: string, lastName: string, r
     const user = await getUser()
     if(!user || !user.permissions["can_see_school-id_section"] ) return 'err'
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    })
     const page = await browser.newPage();
 
     await page.setContent(contentTeacher(firstName, lastName, releaseDate, ID, image), { waitUntil: "domcontentloaded" });
