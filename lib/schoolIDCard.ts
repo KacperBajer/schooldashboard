@@ -122,23 +122,31 @@ const contentTeacher = (firstName: string, lastName: string, releaseDate: string
           max-height: 300px;
           object-fit: contain;
         }
-        .name { position: absolute; left: 350px; top: 165px; }
-        .birthday { position: absolute; left: 350px; top: 240px; }
-        .releaseDate { position: absolute; left: 350px; top: 525px; }
-        .ID { position: absolute; left: 60px; top: 570px; }
+        .firstname { position: absolute; left: 350px; top: 200px; }
+        .lastname { position: absolute; left: 350px; top: 265px; }
+        .releaseDate { position: absolute; left: 350px; top: 330px; }
+        .ID { position: absolute; left: 350px; top: 395px; }
+        .back { position: absolute; left: 70px; top: 100px; }
     </style>
 </head>
 <body>
     <div class="page"></div>
     <div class="page content">
-        <p class="name">${firstName} ${lastName}</p>
+        <p class="firstname">${firstName}</p>
+        <p class="lastname">${lastName}</p>
         <p class="releaseDate">${releaseDate}</p>
         <p class="ID">${ID}</p>
     </div>
     <div class="page image">
       <div class="photodiv">
-        <img class="photo" src="${image}" alt="Zdjęcie ucznia" />
+        <img class="photo" src="${image}" alt="Zdjęcie nauczyciela" />
       </div>
+    </div>
+    <div class="page image">
+      <p class="back">ZESPÓŁ SZKÓŁ NR 1 IM. KAZIMIERZA </br>
+WIELKIEGO W MIŃSKU MAZOWIECKIM </br>
+UL. BUDOWLANA 4 </br>
+05-300 MIŃSK MAZOWIECKI</p>
     </div>
 </body>
 </html>`;

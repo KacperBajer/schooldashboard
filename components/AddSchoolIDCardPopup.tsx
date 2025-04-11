@@ -75,6 +75,7 @@ const StudentForm = () => {
     "Liceum ogólnokształcące"
   );
   const [image, setImage] = useState<File | null>(null);
+  const [imageError, setImageError] = useState('')
 
   const {
     register,
@@ -92,7 +93,10 @@ const StudentForm = () => {
   });
 
   const onSubmit = async (data: StudentSchemaData) => {
-    if (!image) return;
+    if (!image) {
+      setImageError('Image is required')
+      return
+    };
     const imageBase64 = await convertToBase64(image);
     const res = await schoolIDStudentCard(
       data.firstName,
@@ -144,6 +148,7 @@ const StudentForm = () => {
           </section>
         )}
       </Dropzone>
+      {imageError && <p className='ml-1 mt-1 text-sm text-red-600'>{imageError}</p>}
       <CustomInput
         register={register}
         name="firstName"
@@ -201,6 +206,7 @@ const StudentForm = () => {
 
 const TeacherForm = () => {
   const [image, setImage] = useState<File | null>(null);
+  const [imageError, setImageError] = useState('')
   const {
     register,
     handleSubmit,
@@ -212,11 +218,15 @@ const TeacherForm = () => {
       ID: "",
       relaseDate: "",
     },
-    resolver: zodResolver(studentSchema),
+    resolver: zodResolver(teacherSchema),
   });
 
+
   const onSubmit = async (data: TeacherSchemaData) => {
-    if (!image) return;
+    if (!image) {
+      setImageError('Image is required')
+      return
+    };
     const imageBase64 = await convertToBase64(image);
     const res = await schoolIDTeacherCard(
       data.firstName,
@@ -244,12 +254,14 @@ const TeacherForm = () => {
       <p className="text-center font-bold text-3xl mb-5">Teacher data</p>
       <Dropzone
         accept={{ "image/png": [".png"], "image/jpeg": [".jpg", ".jpeg"] }}
-        onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}
+        onDrop={(acceptedFiles) => {
+          setImage(acceptedFiles[0])
+        }}
       >
         {({ getRootProps, getInputProps }) => (
           <section className="border border-border rounded-md bg-primary-background">
             <div {...getRootProps()} className="p-4 hover:cursor-pointer">
-              <input required {...getInputProps()} />
+              <input {...getInputProps()} />
               {image ? (
                 <Image
                   alt=""
@@ -265,6 +277,7 @@ const TeacherForm = () => {
           </section>
         )}
       </Dropzone>
+      {imageError && <p className='ml-1 mt-1 text-sm text-red-600'>{imageError}</p>}
       <CustomInput
         register={register}
         name="firstName"
