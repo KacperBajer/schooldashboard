@@ -901,7 +901,7 @@ export const downloadSongs = async (playlists: string[] | number[], url: string)
             // Download and convert to MP3
             const downloadProcess = spawn(ytDlpPath, [
                 '-o',
-                `${sanitizedTitle}.%(ext)s`,
+                `/nuty/radio/${sanitizedTitle}.%(ext)s`,
                 '-x',
                 '--audio-format',
                 'mp3',
