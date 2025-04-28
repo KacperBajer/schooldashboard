@@ -18,7 +18,7 @@ const Screen = ({ page, inputValue, handleChange, setInputValue }: { page: numbe
     case 1:
       return <div>
         <input
-          className='w-full px-4 py-1.5 rounded-md bg-dark-200 border-2 border-black/10 outline-none appearance-none'
+          className='w-full px-4 py-1.5 rounded-md bg-secondary-background border-2 border-black/10 outline-none appearance-none'
           placeholder='Event name'
           name='name'
           value={inputValue.name}
@@ -28,17 +28,17 @@ const Screen = ({ page, inputValue, handleChange, setInputValue }: { page: numbe
     case 2:
       return <div className='flex flex-wrap gap-2 justify-center'>
         {EventActions?.map((item, index) => (
-          <button key={index} onClick={() => setInputValue((prev: any) => ({ ...prev, function: item.function }))} className={`py-1.5 px-4 rounded-md border-2 ${item.function === inputValue.function ? "border-blue-800 bg-blue-600/10" : "border-dark-200/50"} transition-all duration-200 hover:cursor-pointer flex flex-col items-center`}>
+          <button key={index} onClick={() => setInputValue((prev: any) => ({ ...prev, function: item.function }))} className={`py-1.5 px-4 rounded-md border-2 ${item.function === inputValue.function ? "border-blue-800 bg-blue-600/10" : "border-border"} transition-all duration-200 hover:cursor-pointer flex flex-col items-center`}>
             <p className='text-center font-medium'>{item.name}</p>
           </button>
         ))}
       </div>
     case 3:
       return <div className='flex gap-2'>
-        <button onClick={() => setInputValue(prev => ({ ...prev, recurring: false }))} className={`py-1.5 px-4 rounded-md border-2 ${inputValue.recurring === false ? "border-blue-800 bg-blue-600/10" : "border-dark-200/50"} flex-1 transition-all duration-200 hover:cursor-pointer flex flex-col items-center`}>
+        <button onClick={() => setInputValue(prev => ({ ...prev, recurring: false }))} className={`py-1.5 px-4 rounded-md border-2 ${inputValue.recurring === false ? "border-blue-800 bg-blue-600/10" : "border-border"} flex-1 transition-all duration-200 hover:cursor-pointer flex flex-col items-center`}>
           <p className='text-center font-medium'>One time</p>
         </button>
-        <button onClick={() => setInputValue((prev: any) => ({ ...prev, recurring: true }))} className={`py-1.5 px-4 rounded-md border-2 ${inputValue.recurring === true ? "border-blue-800 bg-blue-600/10" : "border-dark-200/50"} flex-1 transition-all duration-200 hover:cursor-pointer flex flex-col items-center`}>
+        <button onClick={() => setInputValue((prev: any) => ({ ...prev, recurring: true }))} className={`py-1.5 px-4 rounded-md border-2 ${inputValue.recurring === true ? "border-blue-800 bg-blue-600/10" : "border-border"} flex-1 transition-all duration-200 hover:cursor-pointer flex flex-col items-center`}>
           <p className='text-center font-medium'>Repeat</p>
         </button>
       </div>
@@ -52,7 +52,7 @@ const Screen = ({ page, inputValue, handleChange, setInputValue }: { page: numbe
           closeOnScroll
           placeholderText='Date'
           dateFormat="yyyy-MM-dd HH:mm:ss"
-          className='w-[318px] bg-transparent outline-none text-white px-4 py-1.5 rounded-md border-dark-200/50 border-2'
+          className='w-[318px] bg-transparent outline-none text-white px-4 py-1.5 rounded-md border-border border-2'
         />
       </div>
         :
@@ -73,7 +73,7 @@ const Screen = ({ page, inputValue, handleChange, setInputValue }: { page: numbe
           ))}
         </div>
         <input 
-          className='w-full bg-transparent outline-none text-white px-4 py-1.5 rounded-md border-dark-200/50 border-2'
+          className='w-full bg-transparent outline-none text-white px-4 py-1.5 rounded-md border-border border-2'
           placeholder='10:00:00'
           name='time'
           value={inputValue.time}
@@ -103,8 +103,8 @@ const CreatingEventScreen = ({ inputValue, handleChange, setInputValue, handleCl
     <div className='w-[350px] h-fit p-4' >
       <p className='text-center text-3xl font-bold mb-6'>Creating Event</p>
       <Screen page={page} handleChange={handleChange} inputValue={inputValue} setInputValue={setInputValue} />
-      {page !== 4 && <button disabled={isDisabled} onClick={() => setPage(prev => prev + 1)} className='mt-2 w-full rounded-md bg-blue-600 py-1.5 px-4 outline-none appearance-none'>Next</button>}
-      {page === 4 && <button disabled={isDisabled} onClick={handleSubmit} className='mt-2 w-full rounded-md bg-blue-600 py-1.5 px-4 outline-none appearance-none'>Submit</button>}
+      {page !== 4 && <button disabled={isDisabled} onClick={() => setPage(prev => prev + 1)} className='mt-2 w-full rounded-md bg-blue-600 py-1.5 px-4 outline-none appearance-none hover:cursor-pointer'>Next</button>}
+      {page === 4 && <button disabled={isDisabled} onClick={handleSubmit} className='mt-2 w-full rounded-md bg-blue-600 py-1.5 px-4 outline-none appearance-none hover:cursor-pointer'>Submit</button>}
     </div>
   )
 }

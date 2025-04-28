@@ -84,7 +84,7 @@ const EventsPopup = ({ handleClose }: Props) => {
   }
 
   return (
-    <div className="fixed top-0 left-0 z-40 w-full h-screen flex justify-center items-center bg-dark-50/40">
+    <div className="fixed top-0 left-0 z-40 w-full h-screen flex justify-center items-center bg-black/30">
       <div
         ref={boxRef}
         className="bg-surface border border-border rounded-md text-sm text-gray-200"
