@@ -49,15 +49,15 @@ export const checkAndExecuteEvents = async () => {
     );
 
         const events = result.rows;
-
+        console.log(events)
 
         for (const event of events) {
-            const { id, action, payload, isrecurring, date } = event;
+            const { id, action, payload, is_recurring, date } = event;
 
             if (eventHandlers[action]) {
                 await eventHandlers[action](payload);
 
-                if (isrecurring) {
+                if (is_recurring) {
 
                     await (conn as Pool).query(
                         `UPDATE radio_events SET executed = FALSE, date = $1 WHERE id = $2`,
