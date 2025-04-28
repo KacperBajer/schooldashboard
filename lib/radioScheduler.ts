@@ -19,7 +19,7 @@ const eventHandlers: EventHandlers = {
         }
     },
     playNext: async (payload: number[]) => {
-        console.log(payload)
+        console.log('dziala')
         for (const p of payload) {
             skipSong(p)
         }
