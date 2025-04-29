@@ -32,6 +32,8 @@ const RadioMusicPlayer = () => {
     const playerRef = useRef(player)
     playerRef.current = player
 
+    console.log(mode, song, audioRef)
+
     // initial fetch
     const fetchSong = async () => {
         const ip = await getIPAddress()

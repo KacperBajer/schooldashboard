@@ -880,7 +880,7 @@ export const downloadSongs = async (playlists: string[] | number[], url: string)
 
 
             const sanitizedTitle = songData.title.replace(/[^a-zA-Z0-9]/g, '_');
-            const mp3OutputPath = `${process.env.DOWNLOAD_LOCATION}${sanitizedTitle}.mp3`;
+            const mp3OutputPath = `${process.env.RADIO_DOWNLOAD_LOCATION}${sanitizedTitle}.mp3`;
 
             const checkSongQuery = `
                 SELECT id FROM radio_songs 
