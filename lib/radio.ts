@@ -932,7 +932,7 @@ export const downloadSongs = async (playlists: string[] | number[], url: string)
             `;
             const result = await (conn as Pool).query(insertSongQuery, [
                 songData.title,
-                `/${sanitizedTitle}.mp3`,
+                `/nuty/radio/${sanitizedTitle}.mp3`,
                 songData.artist,
                 songData.duration,
             ]);
