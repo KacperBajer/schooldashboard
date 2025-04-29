@@ -32,8 +32,6 @@ const RadioMusicPlayer = () => {
     const playerRef = useRef(player)
     playerRef.current = player
 
-    console.log(mode, song, audioRef)
-
     // initial fetch
     const fetchSong = async () => {
         const ip = await getIPAddress()
@@ -65,6 +63,9 @@ const RadioMusicPlayer = () => {
 
     // update for playback
     useEffect(() => {
+
+        console.log(audioRef.current)
+
         const update = async () => {
             if (song && audioRef.current) {
                 const res = await updatePlaybackState(song ? song.id : null, Math.round(audioRef.current.currentTime), isPlaying, playerRef.current)
